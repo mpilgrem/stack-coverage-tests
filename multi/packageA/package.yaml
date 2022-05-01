@@ -1,0 +1,43 @@
+name:                packageA
+version:             0.1.0.0
+license:             BSD3
+author:              "Mike Pilgrem"
+maintainer:          "public@pilgrem.com"
+copyright:           "Copyright 2022 Mike Pilgrem"
+
+dependencies:
+- base >= 4.7 && < 5
+
+flags:
+  no-a-tests:
+    description: Remove tests of package A
+    manual: false
+    default: true
+
+library:
+  source-dirs: src
+
+executables:
+  packageA-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - packageA
+
+tests:
+  packageA-test:
+    when:
+    - condition: flag(no-a-tests)
+      buildable: false
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - packageA    

@@ -1,0 +1,49 @@
+name:                packageB
+version:             0.1.0.0
+license:             BSD3
+author:              "Mike Pilgrem"
+maintainer:          "public@pilgrem.com"
+copyright:           "Copyright 2022 Mike Pilgrem"
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  packageB-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - packageB
+
+tests:
+  packageB-test1:
+    main:                Spec1.hs
+    source-dirs:         test
+    when:
+    - condition: false
+      other-modules: Spec2
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - packageB
+  packageB-test2:
+    main:                Spec2.hs
+    source-dirs:         test
+    when:
+    - condition: false
+      other-modules: Spec1
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - packageB

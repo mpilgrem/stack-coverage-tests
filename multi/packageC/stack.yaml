@@ -1,0 +1,5 @@
+resolver: lts-19.5
+packages:
+- .
+- ../packageA
+- ../packageB

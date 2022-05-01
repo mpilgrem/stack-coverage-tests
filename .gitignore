@@ -1,0 +1,8 @@
+# Haskell Tool Stack-related
+bin
+doc
+lib
+pkgdb
+stack.sqlite3*
+dist
+stack.yaml.lock

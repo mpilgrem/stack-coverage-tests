@@ -1,0 +1,56 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           packageA
+version:        0.1.0.0
+author:         Mike Pilgrem
+maintainer:     public@pilgrem.com
+copyright:      Copyright 2022 Mike Pilgrem
+license:        BSD3
+build-type:     Simple
+
+flag no-a-tests
+  description: Remove tests of package A
+  manual: False
+  default: True
+
+library
+  exposed-modules:
+      LibA
+  other-modules:
+      Paths_packageA
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable packageA-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_packageA
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , packageA
+  default-language: Haskell2010
+
+test-suite packageA-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_packageA
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , packageA
+  if flag(no-a-tests)
+    buildable: False
+  default-language: Haskell2010
