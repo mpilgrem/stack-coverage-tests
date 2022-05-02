@@ -9,10 +9,10 @@ dependencies:
 - base >= 4.7 && < 5
 
 flags:
-  no-a-tests:
-    description: Remove tests of package A
+  add-a-tests:
+    description: Add tests of package A
     manual: false
-    default: true
+    default: false
 
 library:
   source-dirs: src
@@ -31,7 +31,7 @@ executables:
 tests:
   packageA-test:
     when:
-    - condition: flag(no-a-tests)
+    - condition: "!flag(add-a-tests)"
       buildable: false
     main:                Spec.hs
     source-dirs:         test
